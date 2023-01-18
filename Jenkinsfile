@@ -3,7 +3,7 @@ pipeline {
 
   parameters {
     string(name: "BACKEND_BASE_URL", defaultValue: "", description: "Backend Base URL ?")
-    choice(name: "POKEMON_BASE_URL", defaultValue: "", description: "Pokemon Base URL ")
+    string(name: "POKEMON_BASE_URL", defaultValue: "", description: "Pokemon Base URL ")
     string(name: "PORT", defaultValue: "3001", description: "Running on port ?")
   }
 
