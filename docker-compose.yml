@@ -1,0 +1,14 @@
+version: "3.7"
+services:
+  frontend:
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    container_name: phincon-fe
+    restart: unless-stopped
+    ports:
+      - '${PORT}:80'
+    environment:
+      REACT_APP_BACKEND_BASE_URL: ${REACT_APP_BACKEND_BASE_URL}
+      REACT_APP_POKEMON_BASE_URL: ${REACT_APP_POKEMON_BASE_URL}
+
