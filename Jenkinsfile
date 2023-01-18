@@ -3,7 +3,7 @@ pipeline {
 
   parameters {
     string(name: "BACKEND_BASE_URL", defaultValue: "", description: "Backend Base URL ?")
-    string(name: "POKEMON_BASE_URL", defaultValue: "", description: "Pokemon Base URL ")
+    string(name: "POKEMON_BASE_URL", defaultValue: "https://pokeapi.co/api/v2/pokemon", description: "Pokemon Base URL ")
     string(name: "PORT", defaultValue: "3001", description: "Running on port ?")
   }
 
@@ -24,7 +24,7 @@ pipeline {
       stages {
         stage('Build') {
           steps {
-            sh "sudo docker-compose up -d --build --remove-orphans"
+            sh "docker-compose up -d --build --remove-orphans"
           }
         }
       }
