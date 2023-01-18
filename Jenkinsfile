@@ -24,7 +24,7 @@ pipeline {
       stages {
         stage('Build') {
           steps {
-            sh "docker-compose up -d --build --remove-orphans"
+            sh "sudo docker-compose up -d --build --remove-orphans"
           }
         }
       }
@@ -32,7 +32,7 @@ pipeline {
     stage('Test Instance') {
       steps {
         sleep 10
-        sh "curl http://localhost:${PORT}"
+        sh "curl http://localhost:${params.PORT}"
       }
     }
   }
