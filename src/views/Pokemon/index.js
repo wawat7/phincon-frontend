@@ -1,18 +1,19 @@
-import { Button, Input, Layout, message, Modal, Space, Table, Tag } from "antd";
+import {
+  Button,
+  Layout,
+  Space,
+  Table,
+} from "antd";
 import {
   getPokemon,
   getAllPokemon,
-  catchPokemon,
-  savePokemon,
 } from "../../service/pokemon.js";
 import React, { useState, useEffect } from "react";
-import { Content, Footer, Header } from "antd/es/layout/layout.js";
-import { backendBaseUrl, pokemonBaseUrl } from "../../config/common.config.js";
-import { Form } from "react-router-dom";
+import { Content } from "antd/es/layout/layout.js";
+import { pokemonBaseUrl } from "../../config/common.config.js";
+import { Link } from "react-router-dom";
 
 const App = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
   const columns = [
     {
       title: "Image",
@@ -24,7 +25,6 @@ const App = () => {
       title: "Name",
       dataIndex: "name",
       key: "name",
-      render: (text) => <a>{text}</a>,
     },
     {
       title: "Weight",
@@ -36,9 +36,11 @@ const App = () => {
       title: "Action",
       key: "action",
       render: (_, record) => (
-        <Button onClick={catchButton} type="primary">
-          Catch
-        </Button>
+        <>
+          <Link to={`/detail/${record.key}`}>
+            <Button type="primary">Detail</Button>
+          </Link>
+        </>
       ),
     },
   ];
@@ -52,10 +54,6 @@ const App = () => {
     }
     fetchData();
   }, []);
-
-  const catchButton = () => {
-    
-  }
 
   const loadPokemon = async (data) => {
     let _pokemonData = await Promise.all(
@@ -80,7 +78,9 @@ const App = () => {
     <>
       <Layout>
         <Space wrap>
-          <Button type="primary">List My Pokemon</Button>
+          <Link to="/my-list-pokemon">
+            <Button type="primary">List My Pokemon</Button>
+          </Link>
         </Space>
         <Content>
           <Layout>
@@ -88,7 +88,6 @@ const App = () => {
           </Layout>
         </Content>
       </Layout>
-
     </>
   );
 };
